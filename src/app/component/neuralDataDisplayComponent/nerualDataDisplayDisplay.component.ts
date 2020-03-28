@@ -13,22 +13,22 @@ import {MatSnackBar} from '@angular/material';
 })
 export class NeuralDisplayComponent 
 {
-  private experimentEndDate:string;
-  private  experimentStartDate:string;
-  private  experimenterName:string;
-  private  cellsList:[];
-  private  firstTwoCellsNeuralDataList:[];
-  private  boutMomentDetailsList:[];
-  private  sessionList:[];
-  private  neuralDataSesssionId:any="";
-  private  boutMovementSessionId:any="";
-  private  _timeSeriesNeuronService:TimeSeriesNeuronService;
-  private  neuralDataTextChanged: Subject<string> = new Subject<string>();
-  private  boutMovementTextChanged: Subject<string> = new Subject<string>();
-  private isExperimentStartDateError=false;
-  private  isExperimentEndDateError=false;
-  private  isExperimentalNameError=false;
-  private _spinner: NgxSpinnerService;
+  experimentEndDate:string;
+  experimentStartDate:string;
+  experimenterName:string;
+  cellsList:[];
+  firstTwoCellsNeuralDataList:[];
+  boutMomentDetailsList:[];
+  sessionList:[];
+  neuralDataSesssionId:any="";
+  boutMovementSessionId:any="";
+  _timeSeriesNeuronService:TimeSeriesNeuronService;
+  neuralDataTextChanged: Subject<string> = new Subject<string>();
+  boutMovementTextChanged: Subject<string> = new Subject<string>();
+  isExperimentStartDateError=false;
+  isExperimentEndDateError=false;
+  isExperimenterNameError=false;
+  _spinner: NgxSpinnerService;
  
 
   constructor(timeSeriesNeuronService:TimeSeriesNeuronService,private spinner: NgxSpinnerService,private _snackBar: MatSnackBar)
@@ -78,7 +78,7 @@ export class NeuralDisplayComponent
 
     this.isExperimentStartDateError=false;
 
-    this.isExperimentalNameError=false;
+    this.isExperimenterNameError=false;
       
     if(!isValid(new Date(this.experimentEndDate)))
     {
@@ -115,10 +115,10 @@ export class NeuralDisplayComponent
       
     if(!this.validateExperimentalName(this.experimenterName))
     {
-      this.isExperimentalNameError=true
+      this.isExperimenterNameError=true
     }
 
-    if(!this.isExperimentEndDateError && !this.isExperimentStartDateError && !this.isExperimentalNameError)
+    if(!this.isExperimentEndDateError && !this.isExperimentStartDateError && !this.isExperimenterNameError)
     {
       this._timeSeriesNeuronService.getSessionFullDetails({"startDate":this.experimentStartDate,"endDate":this.experimentEndDate,"experimenterName":this.experimenterName})
       .subscribe(response => 

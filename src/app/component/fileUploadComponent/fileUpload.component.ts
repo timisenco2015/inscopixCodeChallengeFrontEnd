@@ -17,9 +17,9 @@ export class FileUploadComponent
 
     @ViewChild("fileGPIOUpload", {static: false}) fileGPIOUpload: ElementRef;
 
-    private isSessionIdError=false;
+    isSessionIdError=false;
 
-    private _spinner: NgxSpinnerService;
+    _spinner: NgxSpinnerService;
 
     _timeSeriesNeuronService:TimeSeriesNeuronService;
 
@@ -35,6 +35,8 @@ export class FileUploadComponent
 
     errorMessage:any;
 
+    file:any;
+
     constructor(timeSeriesNeuronService:TimeSeriesNeuronService,private spinner: NgxSpinnerService,private _snackBar: MatSnackBar)
     {
         this._timeSeriesNeuronService=timeSeriesNeuronService;
@@ -47,7 +49,7 @@ export class FileUploadComponent
 
     
 
-    private uploadSessionFiles() 
+    uploadSessionFiles() 
     {  
         
         this.fileSessionUpload.nativeElement.value = '';
@@ -105,7 +107,7 @@ export class FileUploadComponent
        
    
 
-    private uploadGPIOFiles() 
+    uploadGPIOFiles() 
     {  
         this.fileGPIOUpload.nativeElement.value = '';
         
@@ -165,7 +167,7 @@ export class FileUploadComponent
         } 
     }
 
-    private uploadCellSetFiles() 
+    uploadCellSetFiles() 
     {  
         this.uploadType=="Cell";
 
@@ -232,10 +234,9 @@ export class FileUploadComponent
         
         fileUpload.onchange = () => 
         {  
-            
-            const file = fileUpload.files[0];  
+            this.file = fileUpload.files[0];  
             this.sessionFiles=[];
-            this.sessionFiles.push({ data: file, inProgress: false, progress: 0});  
+            this.sessionFiles.push({ data: this.file, inProgress: false, progress: 0});  
             this.uploadSessionFiles();  
         };  
 
@@ -249,10 +250,10 @@ export class FileUploadComponent
         fileUpload.onchange = () => 
         {  
    
-            const file = fileUpload.files[0]; 
+             this.file = fileUpload.files[0]; 
            
             this.cellSetfiles=[]
-            this.cellSetfiles.push({ data: file, inProgress: false, progress: 0});  
+            this.cellSetfiles.push({ data: this.file, inProgress: false, progress: 0});  
             this.uploadCellSetFiles();  
         };  
 
@@ -266,9 +267,9 @@ export class FileUploadComponent
         fileUpload.onchange = () => 
         {  
    
-            const file = fileUpload.files[0];  
+            this.file = fileUpload.files[0];  
             this.gPIOFiles=[];
-            this.gPIOFiles.push({ data: file, inProgress: false, progress: 0});  
+            this.gPIOFiles.push({ data: this.file, inProgress: false, progress: 0});  
             this.uploadGPIOFiles();  
         };  
 

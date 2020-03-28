@@ -55,18 +55,18 @@
                                 
                                 <tr *ngIf ="isExperimenterNameError==true || isExperimentStartDateError==true || isExperimentEndDateError==true ">
                                     
-                                    <th>
-                                        <label *ngIf ="isExperimenterNameError==true">Experimental Name contains invalid characters</label>
+                                    <th *ngIf ="isExperimenterNameError==true">
+                                        <label >Experimental Name contains invalid characters</label>
                                     
                                     </th>
                                     
-                                    <th>
+                                    <th *ngIf ="isExperimentStartDateError==true">
                                         
-                                        <label *ngIf ="isExperimentStartDateError==true">Invalid Start Date Format</label> 
+                                        <label >Invalid Start Date Format</label> 
                                     
                                     </th>
                                     
-                                    <th *ngIf ="isSessionIdError==true"> 
+                                    <th *ngIf ="isExperimentEndDateError==true"> 
                                         
                                         <label >Invalid End Date Format</label>
                                     
@@ -179,7 +179,7 @@
                                 
                             <tr *ngIf="i == 0 || i == boutMomentDetailsList.length-1">
                                     
-                                <td>{{Row}} {{i}}</td>
+                                <td>Row {{i}}</td>
                                     
                                 <td>{{boutMomentDetails[0]}}</td>
                                     
