@@ -1,0 +1,222 @@
+import { Component  } from '@angular/core';
+import { Subject } from 'rxjs';  
+import {TimeSeriesNeuronService} from "../../service/timeSeriesNeuronService"
+import {debounceTime} from 'rxjs/operators';
+import { isValid,format,addDays } from 'date-fns'
+import { NgxSpinnerService } from "ngx-spinner";
+import {MatSnackBar} from '@angular/material';
+
+@Component({
+  selector: 'neural_display',
+  templateUrl: './nerualDataDisplay.html',
+  styleUrls: ['./neuralDataDisplay.css']
+})
+export class NeuralDisplayComponent 
+{
+  private experimentEndDate:string;
+  private  experimentStartDate:string;
+  private  experimenterName:string;
+  private  cellsList:[];
+  private  firstTwoCellsNeuralDataList:[];
+  private  boutMomentDetailsList:[];
+  private  sessionList:[];
+  private  neuralDataSesssionId:any="";
+  private  boutMovementSessionId:any="";
+  private  _timeSeriesNeuronService:TimeSeriesNeuronService;
+  private  neuralDataTextChanged: Subject<string> = new Subject<string>();
+  private  boutMovementTextChanged: Subject<string> = new Subject<string>();
+  private isExperimentStartDateError=false;
+  private  isExperimentEndDateError=false;
+  private  isExperimentalNameError=false;
+  private _spinner: NgxSpinnerService;
+ 
+
+  constructor(timeSeriesNeuronService:TimeSeriesNeuronService,private spinner: NgxSpinnerService,private _snackBar: MatSnackBar)
+  {
+    this._timeSeriesNeuronService =timeSeriesNeuronService;
+    this._spinner = spinner;
+  }
+
+  ngOnInit() 
+  {
+      
+    this.boutMovementTextChanged.pipe(debounceTime(4000)).subscribe(response=>
+    {
+
+      if(response=="")
+      {
+        this.boutMovementSessionId = "";
+      }
+      else
+      {
+       // if(Number.isInteger(Number(response)))
+       // {
+         this.getBoutMovement(response);
+       // }
+      }  
+      
+    });
+   
+       
+    this.neuralDataTextChanged.pipe(debounceTime(1000)).subscribe(response=>
+    {
+
+      if(response=="")
+      {
+        this.neuralDataSesssionId = "";
+      }
+      else
+      {
+        this.getNeutralDataFirstTwoRows(response); 
+      }
+    });
+  }
+
+  getSessionData()
+  {
+    this.isExperimentEndDateError=false;
+
+    this.isExperimentStartDateError=false;
+
+    this.isExperimentalNameError=false;
+      
+    if(!isValid(new Date(this.experimentEndDate)))
+    {
+      this.isExperimentEndDateError=true;
+    }
+    else
+    {
+      this.isExperimentEndDateError=false;
+    }
+
+
+    try
+    {
+      this.experimentEndDate=format(addDays(new Date(this.experimentEndDate), 1),'yyyy-MM-dd');
+    }
+    catch(error)
+    {
+      this.isExperimentEndDateError=true;
+    }
+
+    if(!isValid(new Date(this.experimentStartDate)))
+    {
+      this.isExperimentStartDateError=true;
+    }
+
+    try
+    {
+      this.experimentStartDate=format(addDays(new Date(this.experimentStartDate), 1),'yyyy-MM-dd');
+    }
+    catch(error)
+    {
+      this.isExperimentStartDateError=true;
+    }
+      
+    if(!this.validateExperimentalName(this.experimenterName))
+    {
+      this.isExperimentalNameError=true
+    }
+
+    if(!this.isExperimentEndDateError && !this.isExperimentStartDateError && !this.isExperimentalNameError)
+    {
+      this._timeSeriesNeuronService.getSessionFullDetails({"startDate":this.experimentStartDate,"endDate":this.experimentEndDate,"experimenterName":this.experimenterName})
+      .subscribe(response => 
+      {
+        this.spinner.hide(); 
+        this.sessionList=response["object"];
+          
+      },
+      error => 
+      {
+        this.spinner.hide(); 
+
+        this._snackBar.open(error.message, 'close', 
+        {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 3000,
+          direction: 'ltr'
+        });
+      });
+    }
+  }
+
+    
+  neuralDataInput(event)
+  {
+    this.neuralDataTextChanged.next(event.target.value);
+  }
+
+  boutMovementSessionIdInput(event)
+  {
+    this.boutMovementTextChanged.next(event.target.value);
+  }
+
+  getNeutralDataFirstTwoRows(sessionId:string)
+  {
+    this.spinner.show(); 
+    this._timeSeriesNeuronService.getFirstTwoCellsNeuralData({"sessionId":sessionId})
+    .subscribe(response => 
+    { 
+        this.firstTwoCellsNeuralDataList=response["object"];
+        this.spinner.hide(); 
+      
+    },
+    error => 
+    {
+      this.spinner.hide(); 
+      
+      this._snackBar.open(error.message, 'close', 
+        {
+          horizontalPosition: 'right',
+          verticalPosition: 'top',
+          duration: 3000,
+          direction: 'ltr'
+        });
+    });
+  }
+
+
+  getBoutMovement(sessionId:string)
+  {
+    this.spinner.show();
+
+    this._timeSeriesNeuronService.getBoutMomentDetails({"sessionId":sessionId})
+    .subscribe(response => 
+    {
+      this.spinner.hide();
+      this.boutMomentDetailsList=response["object"];
+    },error => 
+    {
+      this.spinner.hide(); 
+      this._snackBar.open(error.message, 'close', 
+      {
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+        duration: 3000,
+        direction: 'ltr'
+      });
+    });
+  }
+
+  validateExperimentalName(value:string) 
+  {
+    if(value==null)
+    {
+      return false;
+    }
+    else
+    {
+      for(let i=0; i<value.length; i++) 
+      {    
+        if(!(value.charCodeAt(0)>=97 && value.charCodeAt(0)<=122) &&
+        !(value.charCodeAt(0)>=65 && value.charCodeAt(0)<=90) && (value.charCodeAt(0)!=32))
+        {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+}

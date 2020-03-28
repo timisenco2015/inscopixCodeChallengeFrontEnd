@@ -1,0 +1,282 @@
+<div class="row">
+    
+    <div class="col-12">
+        
+        <div class="row mt-3">
+           
+            <div class="offset-2 col-8">
+                
+                <div class="table-responsive-sm table-responsive-md ">
+                    
+                    <label style="font-size: 18px;">Session Details</label>
+                    
+                    <br>
+                    
+                    <div class="table-responsive">
+                        
+                        <table class="table table-bordered">
+                            
+                            <thead > 
+                                
+                                <tr>
+                                    
+                                    <th scope="col">Experimenter Name:
+                                        
+                                        <br>
+                                        
+                                        <input type="text" class="form-control mt-1"  [(value)]="experimenterName" [(ngModel)]="experimenterName" >
+                                    
+                                    </th>
+                                   
+                                   
+                                    <th scope="col">Experiment Start Date (YYYY-MM-DD):  
+                                        
+                                        <br>
+                                        
+                                        <input type="text" class="form-control mt-1"   [(value)]="experimentStartDate" [(ngModel)]="experimentStartDate" >
+                                    
+                                    </th>
+
+                                    <th scope="col">Experiement End Date (YYYY-MM-DD): 
+                                        
+                                        <br>
+                                        
+                                        <input type="text" class="form-control mt-1"   [(value)]="experimentEndDate" [(ngModel)]="experimentEndDate" > 
+                                    
+                                    </th>
+                                    
+                                    <th>
+                                        
+                                        <button type="button" class="btn btn-dark" (click)="getSessionData()">Get Details</button>
+                                    
+                                    </th>
+                                
+                                </tr>
+                                
+                                <tr *ngIf ="isExperimenterNameError==true || isExperimentStartDateError==true || isExperimentEndDateError==true ">
+                                    
+                                    <th>
+                                        <label *ngIf ="isExperimenterNameError==true">Experimental Name contains invalid characters</label>
+                                    
+                                    </th>
+                                    
+                                    <th>
+                                        
+                                        <label *ngIf ="isExperimentStartDateError==true">Invalid Start Date Format</label> 
+                                    
+                                    </th>
+                                    
+                                    <th *ngIf ="isSessionIdError==true"> 
+                                        
+                                        <label >Invalid End Date Format</label>
+                                    
+                                    </th>
+                                
+                                </tr>
+                            
+                            </thead>
+                            
+                            <tbody *ngFor="let session of sessionList">          
+                                
+                                <tr>
+                                    
+                                    <td>{{session[0]}}</td>
+                                    
+                                    <td>{{session[1]}}</td>
+                                    
+                                    <td>{{session[2]}}</td>
+                                    
+                                    <td>{{session[3]}}</td>
+                                    
+                                    <td>{{session[4]}}</td>
+                                    
+                                    <td>{{session[5]}}</td>
+                                    
+                                    <td>{{session[6]}}</td>
+                                    
+                                    <td>{{session[7]}}</td>
+                                    
+                                    <td>{{session[8]}}</td>
+                                    
+                                    <td>{{session[9]}}</td>
+                                    
+                                    <td>{{session[10]}}</td>
+                                    
+                                    <td>{{session[11]}}</td>
+                                    
+                                    <td>{{session[12]}}</td>
+                                
+                                </tr>
+                            
+                            </tbody>
+                        
+                        </table>
+                    
+                    </div>
+                
+                </div>
+            
+            </div>
+        
+        </div>
+        
+        <div class="row mt-5">
+            <div class="offset-2 col-8">
+
+                <label style="font-size: 18px;">Bout Movement</label>
+                    
+                <br>
+
+                <div class="table-responsive-sm table-responsive-md">
+
+                    <table class="table table-bordered ">
+
+                        <thead > 
+                                
+                            <tr>
+
+                                <th scope="col">Session_Id:
+                                    
+                                    <br>
+
+                                    <input type="text" style="width:40%;" class="form-control mt-1"  [(value)]="boutMovementSessionId" [(ngModel)]="boutMovementSessionId" (keyup)="boutMovementSessionIdInput($event)">
+                                
+                                </th>
+                            
+                            </tr>
+                            
+                        </thead>
+                        
+                    </table>
+                    
+                </div>
+                
+                <div class="table-responsive-sm table-responsive-md">
+                        
+                    <table class="table table-bordered">
+                            
+                        <thead > 
+                                
+                            <tr>
+                                    
+                                <th scope="col"></th>
+                                    
+                                <th scope="col"> Column 0</th>
+                                    
+                                <th scope="col"> ... </th>
+                                    
+                                <th scope="col"> Column 15 </th>
+                                    
+                                <th scope="col"> ... </th>
+                                    
+                                <th scope="col"> Column 30 </th>
+                                
+                            </tr>
+                            
+                        </thead>
+                            
+                        <tbody *ngFor="let boutMomentDetails of boutMomentDetailsList let i = index">          
+                                
+                            <tr *ngIf="i == 0 || i == boutMomentDetailsList.length-1">
+                                    
+                                <td>{{Row}} {{i}}</td>
+                                    
+                                <td>{{boutMomentDetails[0]}}</td>
+                                    
+                                <td>...</td>
+                                   
+                                <td>{{boutMomentDetails[15]}}</td>
+                                    
+                                <td>...</td>
+                                    
+                                <td>{{boutMomentDetails[boutMomentDetails.length-1]}}</td>
+                                
+                            </tr>
+                                
+                            <tr *ngIf="i == 32">
+                                    
+                                <td>...</td>
+                                    
+                                <td>...</td>
+                                    
+                                <td>...</td>
+                                    
+                                <td>...</td>
+                                    
+                                <td>...</td>
+                                    
+                                <td>...</td>
+                                
+                            </tr>
+                            
+                        </tbody>
+                        
+                    </table>
+                    
+                </div>
+            
+            </div>
+        
+        </div>
+        
+        <div class="row mt-5 mb-5">
+            
+            <div class="offset-2 col-8">
+                
+                <label style="font-size: 18px;">Neural data of first 2 cells and GPIO data</label>
+                    
+                <br>
+                
+                <div class="table-responsive-sm table-responsive-md ">
+                    
+                    <table class="table table-bordered w-20">
+                        
+                        <thead > 
+                            
+                            <tr>
+                                
+                                <th scope="col">Session Id:
+                                    
+                                    <br>
+                                    
+                                    <input type="text" style="width:40%;" class="form-control mt-1"  [(value)]="neuralDataSesssionId" [(ngModel)]="neuralDataSesssionId" (keyup)="neuralDataInput($event)">
+                                
+                                </th>
+                            
+                            </tr>
+                        
+                        </thead>
+                    
+                    </table>
+                    
+                    <table class="table table-bordered w-20">
+                        
+                        <tbody *ngFor="let firstTwoCellsNeuralData of firstTwoCellsNeuralDataList let i = index">          
+                            
+                            <tr>
+                                
+                                <td>{{firstTwoCellsNeuralData[0]}}</td>
+                                
+                                <td>...</td>
+                                
+                                <td>{{firstTwoCellsNeuralData[firstTwoCellsNeuralData.length-1]}}</td>
+                                
+                            </tr>
+                        
+                        </tbody>
+                    
+                    </table>
+                
+                </div>
+            
+            </div>
+        
+        </div>
+    
+    </div>
+
+</div>
+<ngx-spinner class="__loader" bdColor="rgba(0,0,0,0.9)" size="default" color="#fff" type="ball-scale-pulse"
+[fullScreen]="true">
+<p style="color: #ffffff"> Loading... </p>
+</ngx-spinner>

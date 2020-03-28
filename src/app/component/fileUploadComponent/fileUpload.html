@@ -1,0 +1,192 @@
+<div class="row">
+    <div class="offset-2 col-4 border border-dark">
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                
+                <div class="row mt-4">
+                    
+                    <div class="col-12">
+                        
+                        <label>Upload session file (This file must be csv file)</label>
+
+                        <div style="text-align:center; margin-top: 10px; ">
+
+                             <mat-card style=" width: 50%;height:10%">  
+
+                                <mat-card-content>  
+                                
+                                    <ul>  
+
+                                        <li *ngFor="let file of files">
+
+                                            <mat-progress-bar [value]="file.progress"></mat-progress-bar> 
+
+                                            <span id="file-label">  </span>  
+                                        </li>  
+                                    </ul>  
+                                </mat-card-content>
+
+                                <mat-card-actions> 
+
+                                    <button mat-button color="warn" (click)="onSessionFileUploadClick()">
+
+                                        <mat-icon>file_upload</mat-icon>  
+                                            Upload  
+                                    </button> 
+
+                                </mat-card-actions>
+
+                            </mat-card>
+
+                            <input type="file" #fileSessionUpload id="fileSessionUpload" name="fileSessionUpload"  accept="application/JSON" style="display:none;" />
+                
+                        </div>
+            
+                    </div>
+
+                </div>
+    
+            </div>
+            <hr style="border: 1px solid rgb(0, 162, 255);">
+        </div>
+        <div class="row mt-4">
+
+            <div class="col-12">
+
+                <label>Enter Session Id</label>
+
+                <br>
+                
+                <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="sessionIdValue" [(ngModel)]="sessionIdValue" >
+                <label *ngIf ="isSessionIdError==true">You need to enter session id for this file</label>
+            </div>
+        
+        </div>
+
+        <div class="row mt-5">
+
+            <div class="col-12">
+
+                <label>Upload Cell set file (This file must be csv file)</label>
+
+                <div style="text-align:center; margin-top: 10px; ">
+
+                    <mat-card style=" width: 50%;height:10%"> 
+                        
+                        <mat-card-content>
+
+                            <ul>  
+
+                                <li *ngFor="let file of files"> 
+
+                                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+
+                                    <span id="file-label">  </span>  
+
+                                </li>  
+
+                            </ul> 
+
+                        </mat-card-content>
+
+                        <mat-card-actions>  
+                                
+                            <button mat-button color="warn" (click)="onCellSetFileUploadClick()"> 
+
+                                <mat-icon>file_upload</mat-icon>  
+                                
+                                Upload  
+                                
+                            </button>  
+                            
+                        </mat-card-actions>  
+                        
+                    </mat-card>
+                    
+                    <input type="file" #fileCellSetUpload id="fileCellSetUpload" name="fileCellSetUpload"  accept=".csv" style="display:none;" />
+                
+                </div>
+            
+            </div>
+        
+        </div>
+
+        <div class="row mt-5 mb-2">
+
+            <div class="col-12">
+
+                <label>Upload GPIO file (This file must be csv file)</label>
+
+                <div style="text-align:center; margin-top: 10px; ">
+
+                    <mat-card style=" width: 50%;height:10%">
+
+                        <mat-card-content>  
+
+                            <ul> 
+                                
+                                <li *ngFor="let file of files">  
+
+                                    <mat-progress-bar [value]="file.progress"></mat-progress-bar> 
+
+                                    <span id="file-label">  </span>  
+
+                                </li>  
+                            </ul>  
+                        </mat-card-content>  
+                        <mat-card-actions>
+
+                            <button mat-button color="warn" (click)="onGPIOFileUploadClick()"> 
+
+                                <mat-icon>file_upload</mat-icon>  
+                                Upload 
+
+                            </button>  
+
+                        </mat-card-actions>  
+
+                    </mat-card>
+
+                    <input type="file" #fileGPIOUpload id="fileGPIOUpload" name="fileGPIOUpload"  accept=".csv" style="display:none;" />
+                
+                </div>
+            
+            </div>
+        
+        </div>   
+    
+    </div>
+    
+    <div class="col-5 border border-info">
+        
+        <div class="row">
+            
+            <div class="col-12">
+                
+                <div class="table-responsive">
+                        
+                    <table class="table table-bordered">
+                        
+                        <tbody>
+                            
+                            <tr>
+                                <label> {{errorMessage}}</label>
+                            </tr>
+                        
+                        </tbody>
+                    
+                    </table>
+               
+            </div>
+        
+        </div>
+        
+    </div>
+    
+</div>
+<ngx-spinner class="__loader" bdColor="rgba(0,0,0,0.9)" size="default" color="#fff" type="ball-scale-pulse"
+[fullScreen]="true">
+<p style="color: #ffffff"> Loading... </p>
+</ngx-spinner>

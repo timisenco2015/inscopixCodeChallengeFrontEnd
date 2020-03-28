@@ -1,0 +1,45 @@
+
+<div class="div">
+  <div class="row">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-12">
+              <label class="selectionA"  class="ml-4 mt-3" (click)="sectionAClick()">Click here to upload files</label><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+              <br>
+              <div *ngIf = "isSelectionA==true">
+                <file-upload></file-upload>
+              </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+                <label class="selectionA"  class="ml-4 mt-3" (click)="sectionBClick()">Click here to query for data</label><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <br>
+                <div *ngIf ="isSelectionB==true">
+                  <neural_display></neural_display>
+                </div>
+              
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    </div>
+ 
+
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
+<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
+<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+
+
+
+<router-outlet></router-outlet>
