@@ -3,11 +3,11 @@ const path = require('path');
 const app = express();
 
 // Serve static files....
-app.use(express.static(__dirname + '/dist/inscopix-code-challenge-front-end'));
+app.use(express.static(__dirname + '/dist/inscopixCodeChallengeFrontEnd'));
 
 // Send all requests to index.html
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname + '/dist/inscopix-code-challenge-front-end/index.html'));
+  res.sendFile(path.join(__dirname + '/dist/inscopixCodeChallengeFrontEnd/index.html'));
 });
 
 // default Heroku PORT
