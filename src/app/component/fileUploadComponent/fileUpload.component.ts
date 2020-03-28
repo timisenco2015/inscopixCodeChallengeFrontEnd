@@ -68,7 +68,7 @@ export class FileUploadComponent
 
                 file.inProgress = true;  
 
-                // this.spinner.show();
+                 this.spinner.show();
        
                 this._timeSeriesNeuronService.uploadSession(formData).subscribe(response => 
                 {
@@ -124,7 +124,7 @@ export class FileUploadComponent
                 formData.append('sessionId', this.sessionIdValue);
                 file.inProgress = true;  
 
-                // this.spinner.show();
+                 this.spinner.show();
        
                 this._timeSeriesNeuronService.uploadGPIOFile(formData).subscribe(response => 
                 {
@@ -231,6 +231,8 @@ export class FileUploadComponent
         const fileUpload = this.fileSessionUpload.nativeElement;
        
         this.isSessionIdError=false;
+
+        
         
         fileUpload.onchange = () => 
         {  
