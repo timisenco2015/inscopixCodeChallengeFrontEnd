@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "inscopixCodeChallengeFrontEnd"
+  "defaultProject": "inscopixCodeChallengeFrontEnd",
+  "cli": {
+    "analytics": "4f19a491-aeed-4801-8f98-94c580c861c7"
+  }
 }

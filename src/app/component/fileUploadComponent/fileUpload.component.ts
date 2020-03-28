@@ -234,9 +234,10 @@ export class FileUploadComponent
         
         fileUpload.onchange = () => 
         {  
-            this.file = fileUpload.files[0];  
+            
+            const file = fileUpload.files[0];  
             this.sessionFiles=[];
-            this.sessionFiles.push({ data: this.file, inProgress: false, progress: 0});  
+            this.sessionFiles.push({ data: file, inProgress: false});  
             this.uploadSessionFiles();  
         };  
 
@@ -250,10 +251,10 @@ export class FileUploadComponent
         fileUpload.onchange = () => 
         {  
    
-             this.file = fileUpload.files[0]; 
+            const file = fileUpload.files[0]; 
            
             this.cellSetfiles=[]
-            this.cellSetfiles.push({ data: this.file, inProgress: false, progress: 0});  
+            this.cellSetfiles.push({ data: file, inProgress: false});  
             this.uploadCellSetFiles();  
         };  
 
@@ -267,9 +268,9 @@ export class FileUploadComponent
         fileUpload.onchange = () => 
         {  
    
-            this.file = fileUpload.files[0];  
+            const file = fileUpload.files[0];  
             this.gPIOFiles=[];
-            this.gPIOFiles.push({ data: this.file, inProgress: false, progress: 0});  
+            this.gPIOFiles.push({ data: file, inProgress: false});  
             this.uploadGPIOFiles();  
         };  
 

@@ -17,11 +17,11 @@
 
                                 <mat-card-content>  
                                 
-                                    <ul>  
+                                    <ul *ngFor="let file of sessionFiles">  
 
                                         <li >
 
-                                            <mat-progress-bar [value]="file.progress"></mat-progress-bar> 
+                                            <mat-progress-bar ></mat-progress-bar> 
 
                                             <span id="file-label">  </span>  
                                         </li>  
@@ -79,9 +79,9 @@
 
                             <ul>  
 
-                                <li > 
+                                <li *ngFor="let file of cellSetfiles"> 
 
-                                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>
+                                    <mat-progress-bar ></mat-progress-bar>
 
                                     <span id="file-label">  </span>  
 
@@ -127,9 +127,9 @@
 
                             <ul> 
                                 
-                                <li >  
+                                <li *ngFor="let file of gPIOFiles">  
 
-                                    <mat-progress-bar [value]="file.progress"></mat-progress-bar> 
+                                    <mat-progress-bar ></mat-progress-bar> 
 
                                     <span id="file-label">  </span>  
 

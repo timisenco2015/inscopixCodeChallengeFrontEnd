@@ -36,7 +36,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgxSpinnerModule,
     MatIconModule,  
     MatButtonModule,
-    HttpClientModule,  
+    HttpClientModule, 
     MatCardModule,  
     MatProgressBarModule, BrowserAnimationsModule 
   ],
