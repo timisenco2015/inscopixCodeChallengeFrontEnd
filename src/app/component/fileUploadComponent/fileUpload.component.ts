@@ -48,7 +48,7 @@ export class FileUploadComponent
    
 
     
-
+    // this method is used to upload session files
     uploadSessionFiles() 
     {  
         
@@ -106,7 +106,7 @@ export class FileUploadComponent
     }
        
    
-
+    // this method is used to upload gpio files
     uploadGPIOFiles() 
     {  
         this.fileGPIOUpload.nativeElement.value = '';
@@ -167,6 +167,7 @@ export class FileUploadComponent
         } 
     }
 
+    // this method is used to upload cells files
     uploadCellSetFiles() 
     {  
         this.uploadType=="Cell";
@@ -226,6 +227,7 @@ export class FileUploadComponent
         }  
     }
 
+    //button click to upload session file
     onSessionFileUploadClick() 
     {  
         const fileUpload = this.fileSessionUpload.nativeElement;
@@ -246,6 +248,8 @@ export class FileUploadComponent
         fileUpload.click();  
     }
 
+
+    //button click to upload cell file
     onCellSetFileUploadClick()
     {
         const fileUpload = this.fileCellSetUpload.nativeElement;
@@ -263,6 +267,7 @@ export class FileUploadComponent
         fileUpload.click(); 
     }
 
+    //button click to upload gpio file
     onGPIOFileUploadClick()
     {
         const fileUpload = this.fileGPIOUpload.nativeElement;

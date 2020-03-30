@@ -21,7 +21,7 @@ export class TimeSeriesNeuronService
   }
 
 
-  
+  // get neural first two cells(rows) of the cellset table
   getFirstTwoCellsNeuralData(data:any): Observable<any>
   {
     
@@ -46,7 +46,7 @@ export class TimeSeriesNeuronService
     )
   }
 
-  
+  //get bout monent of the animal
   getBoutMomentDetails(data:any): Observable<any>
   {
     
@@ -72,7 +72,7 @@ export class TimeSeriesNeuronService
   }
 
 
-  
+  // get full details from the session table
   getSessionFullDetails(data:any): Observable<any>
   {
     
@@ -96,6 +96,7 @@ export class TimeSeriesNeuronService
     )
   }
 
+  // upload session files
   public uploadSession(formData:any) 
   {
     
@@ -119,6 +120,8 @@ export class TimeSeriesNeuronService
       ) 
     }
 
+
+    // upload cell files
     public uploadCellSetFile(formData:any) 
     {
    
@@ -142,6 +145,7 @@ export class TimeSeriesNeuronService
       ) 
     }
 
+    // upload gpio files
     public uploadGPIOFile(formData:any) 
     {
     
@@ -168,7 +172,7 @@ export class TimeSeriesNeuronService
 
   private handleError(error: Response) 
   {
-    console.log("--++--> ",error);
+    
       return throwError( error);
     
     

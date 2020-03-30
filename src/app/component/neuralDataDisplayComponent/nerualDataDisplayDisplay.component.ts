@@ -72,6 +72,7 @@ export class NeuralDisplayComponent
     });
   }
 
+  // get session data from database and populate to session table on the interface
   getSessionData()
   {
     this.isExperimentEndDateError=false;
@@ -153,6 +154,7 @@ export class NeuralDisplayComponent
     this.boutMovementTextChanged.next(event.target.value);
   }
 
+  // get NeutralDataFirstTwoRows from database and populate to session table on the interface
   getNeutralDataFirstTwoRows(sessionId:string)
   {
     this.spinner.show(); 
@@ -178,6 +180,7 @@ export class NeuralDisplayComponent
   }
 
 
+  // get Bout Movement from database and populate to session table on the interface
   getBoutMovement(sessionId:string)
   {
     this.spinner.show();
