@@ -149,7 +149,7 @@ export class TimeSeriesNeuronService
 
         map((response) => 
         {
-          
+          console.log(response);
           if(response==null)
           {
             return EMPTY;
@@ -168,7 +168,7 @@ export class TimeSeriesNeuronService
 
   private handleError(error: Response) 
   {
-    
+    console.log("--++--> ",error);
       return throwError( error);
     
     

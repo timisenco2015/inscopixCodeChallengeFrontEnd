@@ -91,7 +91,7 @@ export class FileUploadComponent
                 {
                     this.spinner.hide(); 
 
-                    console.log(error);
+                    
       
                     this._snackBar.open(error.message, 'close', 
                     {
@@ -142,13 +142,13 @@ export class FileUploadComponent
                     {
                         this.errorMessage=JSON.stringify(response["object"]) ;
                     }
-            
+                    console.log("-->",response);
                 },
                 error => 
                 {
 
                     this.spinner.hide(); 
-
+                    console.log("-->",error);
       
                     this._snackBar.open(error.message, 'close', 
                     {
