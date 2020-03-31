@@ -1,7 +1,9 @@
-import { Component,  ViewChild, ElementRef  } from '@angular/core';
+import { Component,  ViewChild, ElementRef,OnDestroy  } from '@angular/core';
 import {TimeSeriesNeuronService} from "../../../app/service/timeSeriesNeuronService"
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { NgxSpinnerService } from "ngx-spinner";
+import {Subject,} from 'rxjs';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'file-upload',
@@ -37,6 +39,8 @@ export class FileUploadComponent
 
     file:any;
 
+    sessionsIdTextChanged: Subject<string> = new Subject<string>();
+
     constructor(timeSeriesNeuronService:TimeSeriesNeuronService,private spinner: NgxSpinnerService,private _snackBar: MatSnackBar)
     {
         this._timeSeriesNeuronService=timeSeriesNeuronService;
@@ -45,7 +49,24 @@ export class FileUploadComponent
         
     }
 
-   
+    ngOnInit() 
+    {
+        this.sessionsIdTextChanged.pipe(debounceTime(2000)).subscribe(response=>
+        {
+            if(response=="")
+            {
+
+                this.sessionIdValue = null;
+                
+            }
+            else
+            {
+                    
+                this.sessionIdValue=response;
+                   
+            }
+        });
+    }
 
     
     // this method is used to upload session files
@@ -75,16 +96,9 @@ export class FileUploadComponent
             
                     this.spinner.hide(); 
 
-           
-                    if(response["objectType"]=="Error Object")
-                    {
-                
-                        this.errorMessage=response["object"]["Insert Error"];
-                    }
-                    else
-                    {
-                        this.errorMessage=JSON.stringify(response["object"]) ;
-                    }
+    
+                    this.errorMessage=JSON.stringify(response["object"]) ;
+                    
             
                 },
                 error => 
@@ -93,6 +107,10 @@ export class FileUploadComponent
 
                     
       
+                    this.errorMessage=JSON.stringify(error) ;
+
+                    this.spinner.hide(); 
+                   
                     this._snackBar.open(error.message, 'close', 
                     {
                         horizontalPosition: 'right',
@@ -131,25 +149,17 @@ export class FileUploadComponent
             
                     this.spinner.hide(); 
 
-                    
-           
-                    if(response["objectType"]=="Error Object")
-                    {
+    
+                    this.errorMessage=JSON.stringify(response["object"]) ;
                 
-                        this.errorMessage=response["object"]["Insert Error"];
-                    }
-                    else
-                    {
-                        this.errorMessage=JSON.stringify(response["object"]) ;
-                    }
-                    console.log("-->",response);
                 },
                 error => 
                 {
 
+                    this.errorMessage=JSON.stringify(error) ;
+
                     this.spinner.hide(); 
-                    console.log("-->",error);
-      
+                   
                     this._snackBar.open(error.message, 'close', 
                     {
                         horizontalPosition: 'right',
@@ -193,23 +203,17 @@ export class FileUploadComponent
             
                     this.spinner.hide(); 
 
-                    if(response["objectType"]=="Error Object")
-                    {
-                
-                        this.errorMessage=response["object"]["Insert Error"];
-                    }
-                    else
-                    {
-                        this.errorMessage=JSON.stringify(response["object"]) ;
-                    }
+    
+                    this.errorMessage=JSON.stringify(response["object"]) ;
+                    
             
                 },
                 error => 
                 {
-                    this.spinner.hide(); 
+                    this.errorMessage=JSON.stringify(error) ;
 
-                    console.log(error);
-      
+                    this.spinner.hide(); 
+                   
                     this._snackBar.open(error.message, 'close', 
                     {
                         horizontalPosition: 'right',
@@ -282,6 +286,13 @@ export class FileUploadComponent
         };  
 
         fileUpload.click(); 
+    }
+
+
+    sessionIdInput(event)
+    {
+      
+      this.sessionsIdTextChanged.next(event.target.value);
     }
     
 }

@@ -120,6 +120,29 @@ export class TimeSeriesNeuronService
       ) 
     }
 
+  // upload session files by providing location url
+  public uploadSessionByLocation(formData:any) 
+  {
+    
+    
+      return this._apiService.post(`neuron/importSessionsFromLocation`, formData).pipe(
+
+        map((response) => 
+        {
+          
+          if(response==null)
+          {
+            return EMPTY;
+          }
+          else
+          {
+            return response;
+          }
+        }), 
+        
+        catchError(this.handleError)
+      ) 
+    }
 
     // upload cell files
     public uploadCellSetFile(formData:any) 
@@ -145,6 +168,30 @@ export class TimeSeriesNeuronService
       ) 
     }
 
+     // upload cell files by providing location url
+     public uploadCellSetFileByLocation(data:any) 
+     {
+    
+       
+       return this._apiService.post(`neuron/importCellsCSVFromLocation`, data).pipe(
+ 
+         map((response) => 
+         {
+           
+           if(response==null)
+           {
+             return EMPTY;
+           }
+           else
+           {
+             return response;
+           }
+         }), 
+         
+         catchError(this.handleError)
+       ) 
+     }
+
     // upload gpio files
     public uploadGPIOFile(formData:any) 
     {
@@ -153,7 +200,7 @@ export class TimeSeriesNeuronService
 
         map((response) => 
         {
-          console.log(response);
+          
           if(response==null)
           {
             return EMPTY;
@@ -168,7 +215,28 @@ export class TimeSeriesNeuronService
       ) 
     }
     
- 
+  // upload gpio files by providing file location
+  public uploadGPIOFileByLocation(formData:any) 
+  {
+  
+    return this._apiService.post(`neuron/importGpiosCSVFromFileLocation`, formData).pipe(
+
+      map((response) => 
+      {
+        
+        if(response==null)
+        {
+          return EMPTY;
+        }
+        else
+        {
+          return response;
+        }
+      }), 
+      
+      catchError(this.handleError)
+    ) 
+  }
 
   private handleError(error: Response) 
   {

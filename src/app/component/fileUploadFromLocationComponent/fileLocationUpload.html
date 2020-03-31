@@ -1,0 +1,141 @@
+<div class="row">
+    <div class="offset-2 col-4 border border-dark">
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                
+                <div class="row mt-4">
+                    
+                    <div class="col-12">
+                        
+                        <label>Upload session file (This file must be json file)</label>
+
+                        <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="sessionsFileName" [(ngModel)]="sessionsFileName" (keyup)="sessionsFileLocationInput($event)" >
+                        
+                    </div>
+
+                </div>
+                <div class="row mt-2">
+                    
+                    <div class="offset-7 col-3">
+                        
+                        <button type="button" class="btn btn-dark mr-2" (click)="uploadSessionFilesClick()">Get Details</button>
+                    
+                    </div>
+                
+                </div>
+    
+            </div>
+            <hr style="border: 1px solid rgb(0, 162, 255);">
+        </div>
+        <div class="row mt-4">
+
+            <div class="col-12">
+
+                <label>Enter Session Id</label>
+
+                <br>
+                
+                <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="sessionIdValue" [(ngModel)]="sessionIdValue" (keyup)="sessionIdInput($event)" >
+               
+            </div>
+        
+        </div>
+
+        <div class="row mt-5">
+
+            <div class="col-12">
+
+                <div class="row">
+                    
+                    <div class="col-12">
+                        
+                        <label>Upload Cell set file (This file must be csv file)</label>
+               
+                        <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="cellsFileName" [(ngModel)]="cellsFileName"  (keyup)="cellsFileLocationInput($event)">
+                        
+                        <label *ngIf ="isCellsError==true">You need to enter session id and this file location</label>
+                    
+                    </div>
+                
+                </div>
+                
+                <div class="row mt-2">
+                    
+                    <div class="offset-7 col-3">
+                        
+                        <button type="button" class="btn btn-dark mr-2" (click)="uploadCellSetFilesClick() ">Get Details</button>
+                    
+                    </div>
+                
+                </div>
+               
+            </div>
+        
+        </div>
+
+        <div class="row mt-5 mb-2">
+
+            <div class="col-12">
+
+                
+                <div class="row">
+                    
+                    <div class="col-12">
+                        
+                        <label>Upload GPIO file (This file must be csv file)</label>
+
+                        <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="gPIOsFileName" [(ngModel)]="gPIOsFileName" (keyup)="gPIOFileLocationInput($event)" >
+                        <label *ngIf ="isGPIOSError==true">You need to enter session id and this file location</label>
+
+                    </div>
+                
+                </div>
+                
+                <div class="row mt-2">
+                    
+                    <div class="offset-7 col-3">
+                        
+                        <button type="button" class="btn btn-dark mr-2" (click)="uploadGPIOFilesClick()">Get Details</button>
+                    
+                    </div>
+                
+                </div>
+            </div>
+        
+        </div>   
+    
+    </div>
+    
+    <div class="col-5 border border-info">
+        
+        <div class="row">
+            
+            <div class="col-12">
+                
+                <div class="table-responsive">
+                        
+                    <table class="table table-bordered">
+                        
+                        <tbody>
+                            
+                            <tr>
+                                <label> {{errorMessage}}</label>
+                            </tr>
+                        
+                        </tbody>
+                    
+                    </table>
+               
+            </div>
+        
+        </div>
+        
+    </div>
+    
+</div>
+<ngx-spinner class="__loader" bdColor="rgba(0,0,0,0.9)" size="default" color="#fff" type="ball-scale-pulse"
+[fullScreen]="true">
+<p style="color: #ffffff"> Loading... </p>
+</ngx-spinner>

@@ -9,7 +9,11 @@ export class AppComponent
 {
   title = 'inscopixCodeChallengeFrontEnd';
   isSelectionA=false;
+
   isSelectionB=false;
+
+  isSelectionC=false;
+
   constructor()
   {
 
@@ -18,13 +22,28 @@ export class AppComponent
   sectionAClick()
   {
     this.isSelectionA=true;
+
     this.isSelectionB=false;
-    console.log("--->");
+
+    this.isSelectionC=false;
+    
   }
 
   sectionBClick()
   {
     this.isSelectionA=false;
+
     this.isSelectionB=true;
+
+    this.isSelectionC=false;
+  }
+
+  sectionCClick()
+  {
+    this.isSelectionA=false;
+    
+    this.isSelectionB=false;
+
+    this.isSelectionC=true;
   }
 }

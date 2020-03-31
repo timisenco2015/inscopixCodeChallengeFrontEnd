@@ -59,7 +59,7 @@
 
                 <br>
                 
-                <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="sessionIdValue" [(ngModel)]="sessionIdValue" >
+                <input type="text" class="form-control col-3 ml-3" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" [(value)]="sessionIdValue" [(ngModel)]="sessionIdValue" (keyup)="sessionIdInput($event)" >
                 <label *ngIf ="isSessionIdError==true">You need to enter session id for this file</label>
             </div>
         

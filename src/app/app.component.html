@@ -16,30 +16,29 @@
           </div>
           <div class="row">
             <div class="col-12">
-                <label class="selectionA"  class="ml-4 mt-3" (click)="sectionBClick()">Click here to query for data</label><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <label class="selectionA"  class="ml-4 mt-3" (click)="sectionBClick()">Click here to upload files by providing location name</label><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
                 <br>
                 <div *ngIf ="isSelectionB==true">
+                  <file-upload-location></file-upload-location>
+                </div>
+              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+                <label class="selectionA"  class="ml-4 mt-3" (click)="sectionCClick()">Click here to query for data</label><mat-icon aria-hidden="false" aria-label="Example home icon">home</mat-icon>
+                <br>
+                <div *ngIf ="isSelectionC==true">
                   <neural_display></neural_display>
                 </div>
               
             </div>
           </div>
-          </div>
+          
+          
         </div>
       </div>
     </div>
+  </div>
       
-    </div>
- 
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced. * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-
-
-<router-outlet></router-outlet>
+</div>

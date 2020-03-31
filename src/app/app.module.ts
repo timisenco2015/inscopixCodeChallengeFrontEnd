@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FileUploadComponent} from "../app/component/fileUploadComponent/fileUpload.component";
 import {NeuralDisplayComponent} from "./component/neuralDataDisplayComponent/nerualDataDisplayDisplay.component";
+import{FileLocationUploadComponent } from "./component/fileUploadFromLocationComponent/fileLocationUploadComponent";
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     FileUploadComponent,
-    NeuralDisplayComponent
+    NeuralDisplayComponent,
+    FileLocationUploadComponent 
   ],
   imports: [
     BrowserModule,
