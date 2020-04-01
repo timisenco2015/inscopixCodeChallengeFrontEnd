@@ -7,9 +7,9 @@ export interface AppConfigInterface {
 
 export const APP_CONFIG = new InjectionToken('app.config');
 export const AppConfig: AppConfigInterface = {
-  //GETNEURON_ENDPOINT: 'http://localhost:8080/',
-  GETNEURON_ENDPOINT: 'http://15.223.94.187/',
-  //GETCELEBRITY_ENDPOINT: 'http://localhost:8080/api/' //for testing purpose
+ // GETNEURON_ENDPOINT: 'http://localhost:1388/',
+  //GETNEURON_ENDPOINT: 'http://15.223.94.187/',
+  GETNEURON_ENDPOINT: 'http://localhost:8080/' //for testing purpose
     
   
 };

@@ -145,12 +145,8 @@ export class FileLocationUploadComponent implements OnDestroy
         {
             this.spinner.show();
 
-            const formData = new FormData(); 
             
-            formData.append("fileName", this.sessionsFileName);
-            
-            
-            this._timeSeriesNeuronService.uploadSessionByLocation(formData)
+            this._timeSeriesNeuronService.uploadSessionByLocation({"fileName": this.sessionsFileName})
             .subscribe(response => 
             {
             
@@ -209,7 +205,7 @@ export class FileLocationUploadComponent implements OnDestroy
         if (this.sessionIdValue!=null && this.gPIOsFileName!=null)
         {
             this.spinner.show();
-            this._timeSeriesNeuronService.uploadGPIOFileByLocation(formData)
+            this._timeSeriesNeuronService.uploadGPIOFileByLocation({"fileName": this.gPIOsFileName,"sessionId":this.sessionIdValue})
             .subscribe(response => 
             {
             
@@ -259,16 +255,12 @@ export class FileLocationUploadComponent implements OnDestroy
             
         this.isSessionError = false;
         
-        var formData = new FormData(); 
-
-        formData.append('fileName', this.cellsFileName);
-
-        formData.append('sessionId', this.sessionIdValue);
+      
 
         if (this.sessionIdValue!=null && this.cellsFileName!=null)
         {
             this.spinner.show();
-            this._timeSeriesNeuronService.uploadCellSetFileByLocation(formData)
+            this._timeSeriesNeuronService.uploadCellSetFileByLocation({"fileName": this.cellsFileName,"sessionId":this.sessionIdValue})
             .subscribe(response => 
             {
             
