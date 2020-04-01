@@ -145,10 +145,10 @@ export class FileLocationUploadComponent implements OnDestroy
         {
             this.spinner.show();
 
-            var formData = new FormData(); 
-
-            formData.append('fileName', this.sessionsFileName);
-
+            const formData = new FormData(); 
+            
+            formData.append("fileName", this.sessionsFileName);
+            
             
             this._timeSeriesNeuronService.uploadSessionByLocation(formData)
             .subscribe(response => 
@@ -314,7 +314,7 @@ export class FileLocationUploadComponent implements OnDestroy
     cellsFileLocationInput(event)
     {
       
-      this.gpiosFilesLocationTextChanged.next(event.target.value);
+      this.cellsFilesLocationTextChanged.next(event.target.value);
     }
    
     sessionIdInput(event)

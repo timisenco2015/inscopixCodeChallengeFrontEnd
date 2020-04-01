@@ -18,7 +18,7 @@ export class ApiService
     
     @Inject(APP_CONFIG) private config: AppConfigInterface) 
     {
-      this.api_url = this.config.GETCELEBRITY_ENDPOINT;
+      this.api_url = this.config.GETNEURON_ENDPOINT;
      
     }
  
@@ -35,7 +35,7 @@ export class ApiService
   }
 
   post(path: string, body: Object = {}): Observable<any> {
-   console.log( `${this.api_url}${path}`, body);
+   
     return this._http.post(
        `${this.api_url}${path}`, body
      ).pipe(catchError(this.formatErrors));
