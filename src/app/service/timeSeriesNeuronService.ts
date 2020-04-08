@@ -38,7 +38,8 @@ export class TimeSeriesNeuronService
         else
         {
          
-          return response;
+          console.log("--++--> ",response.data);
+          return response.data;
         }
       }), 
       
@@ -62,8 +63,8 @@ export class TimeSeriesNeuronService
         }
         else
         {
-          console.log(response);
-          return response;
+         
+          return response.data;
         }
       }), 
       
@@ -88,7 +89,7 @@ export class TimeSeriesNeuronService
         }
         else
         {
-          return response;
+          return response.data;
         }
       }), 
       
@@ -136,7 +137,7 @@ export class TimeSeriesNeuronService
           }
           else
           {
-            return response;
+            return response.data;
           }
         }), 
         
@@ -184,7 +185,7 @@ export class TimeSeriesNeuronService
            }
            else
            {
-             return response;
+             return response.data;
            }
          }), 
          
@@ -230,7 +231,7 @@ export class TimeSeriesNeuronService
         }
         else
         {
-          return response;
+          return response.data;
         }
       }), 
       

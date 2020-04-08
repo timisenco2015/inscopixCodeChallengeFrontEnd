@@ -17,7 +17,6 @@ export class FileLocationUploadComponent implements OnDestroy
 
     isSessionError=false;
     isSessionIdError=false;
-
     isCellsError=false;
     isGPIOSError=false;
 
@@ -140,8 +139,19 @@ export class FileLocationUploadComponent implements OnDestroy
         this.isCellsError = false;
             
         this.isSessionError = false;
+
+        this.isSessionIdError=false;
         
-        if (this.sessionsFileName!=null)
+        if (this.sessionsFileName==null)
+        {
+            this.isSessionError=true;
+        }
+
+        if(this.sessionIdValue==null)
+        {
+            this.isSessionIdError=true;
+        }
+        if (this.sessionsFileName!=null && this.sessionIdValue!=null)
         {
             this.spinner.show();
 
@@ -151,8 +161,8 @@ export class FileLocationUploadComponent implements OnDestroy
             {
             
                 this.spinner.hide(); 
-
-
+               
+           
                 this.errorMessage=JSON.stringify(response["object"]) ;
                 
             
@@ -174,10 +184,7 @@ export class FileLocationUploadComponent implements OnDestroy
             });
         
         }
-        else
-        {
-            this.isSessionError=true;
-        }
+        
        
     }
 
@@ -186,25 +193,38 @@ export class FileLocationUploadComponent implements OnDestroy
     // this method is used to upload gpio files
     uploadGPIOFilesClick() 
     {  
-            this.errorMessage="";
+        this.errorMessage="";
 
-            this.isGPIOSError = false;
+        this.isGPIOSError = false;
 
-            this.isCellsError = false;
+        this.isCellsError = false;
 
-            this.isSessionError = false;
+        this.isSessionError = false;
 
-            var formData = new FormData(); 
+        this.isSessionIdError=false;
 
-            formData.append('fileName', this.gPIOsFileName);
+        var formData = new FormData(); 
 
-            formData.append('sessionId', this.sessionIdValue);
+        formData.append('fileName', this.gPIOsFileName);
 
+        formData.append('sessionId', this.sessionIdValue);
            
+        if (this.gPIOsFileName==null)
+        {
 
+            this.isGPIOSError=true;
+        
+        }
+        if(this.sessionIdValue==null)
+        {
+
+            this.isSessionIdError=true;
+
+        }
         if (this.sessionIdValue!=null && this.gPIOsFileName!=null)
         {
             this.spinner.show();
+
             this._timeSeriesNeuronService.uploadGPIOFileByLocation({"fileName": this.gPIOsFileName,"sessionId":this.sessionIdValue})
             .subscribe(response => 
             {
@@ -236,10 +256,7 @@ export class FileLocationUploadComponent implements OnDestroy
             });
             
         }
-        else 
-        {
-            this.isGPIOSError=true;
-        }
+       
        
     }
 
@@ -254,8 +271,18 @@ export class FileLocationUploadComponent implements OnDestroy
         this.isCellsError = false;
             
         this.isSessionError = false;
-        
+
+        this.isSessionIdError=false;
       
+        if (this.cellsFileName==null)
+        {
+            this.isCellsError = true;
+        }
+
+        if(this.sessionIdValue==null)
+        {
+            this.isSessionIdError=true;
+        }
 
         if (this.sessionIdValue!=null && this.cellsFileName!=null)
         {
@@ -290,10 +317,7 @@ export class FileLocationUploadComponent implements OnDestroy
             
             });
         }
-        else
-        {
-            this.isCellsError = true;
-        }
+       
     }
        
    

@@ -57,7 +57,7 @@ export class FileUploadComponent
             {
 
                 this.sessionIdValue = null;
-                
+
             }
             else
             {
@@ -90,10 +90,12 @@ export class FileUploadComponent
                 file.inProgress = true;  
 
                  this.spinner.show();
+
+                 
        
                 this._timeSeriesNeuronService.uploadSession(formData).subscribe(response => 
                 {
-            
+                    console.log("---> ",response);
                     this.spinner.hide(); 
 
     

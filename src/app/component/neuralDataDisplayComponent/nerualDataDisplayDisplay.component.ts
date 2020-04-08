@@ -46,6 +46,8 @@ export class NeuralDisplayComponent
       if(response=="")
       {
         this.boutMovementSessionId = "";
+
+        this.boutMomentDetailsList=[];
       }
       else
       {
@@ -58,12 +60,14 @@ export class NeuralDisplayComponent
     });
    
        
-    this.neuralDataTextChanged.pipe(debounceTime(1000)).subscribe(response=>
+    this.neuralDataTextChanged.pipe(debounceTime(4000)).subscribe(response=>
     {
 
       if(response=="")
       {
         this.neuralDataSesssionId = "";
+
+        this.firstTwoCellsNeuralDataList=null;
       }
       else
       {
@@ -80,6 +84,8 @@ export class NeuralDisplayComponent
     this.isExperimentStartDateError=false;
 
     this.isExperimenterNameError=false;
+
+    this.sessionList=[];
       
     if(!isValid(new Date(this.experimentEndDate)))
     {
@@ -124,9 +130,11 @@ export class NeuralDisplayComponent
       this._timeSeriesNeuronService.getSessionFullDetails({"startDate":this.experimentStartDate,"endDate":this.experimentEndDate,"experimenterName":this.experimenterName})
       .subscribe(response => 
       {
+        
         this.spinner.hide(); 
+
         this.sessionList=response["object"];
-          
+        
       },
       error => 
       {
@@ -161,7 +169,9 @@ export class NeuralDisplayComponent
     this._timeSeriesNeuronService.getFirstTwoCellsNeuralData({"sessionId":sessionId})
     .subscribe(response => 
     { 
+     
         this.firstTwoCellsNeuralDataList=response["object"];
+        
         this.spinner.hide(); 
       
     },
@@ -189,7 +199,9 @@ export class NeuralDisplayComponent
     .subscribe(response => 
     {
       this.spinner.hide();
+      
       this.boutMomentDetailsList=response["object"];
+
     },error => 
     {
       this.spinner.hide(); 

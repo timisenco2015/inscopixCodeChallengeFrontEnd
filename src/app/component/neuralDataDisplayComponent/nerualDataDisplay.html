@@ -75,36 +75,79 @@
                                 </tr>
                             
                             </thead>
-                            
+                        </table>
+                    </div>
+                    <div class="table-responsive">
+                        
+                        <table class="table table-bordered">
+                                    
+                            <thead > 
+                                <th>
+                                    Animal Date of Birth
+                                </th>
+                                <th>
+                                    Animal Id
+                                </th>
+                                <th>
+                                    Animal Sex
+                                </th>
+                                <th>
+                                    Animal Species
+                                </th>
+                                <th>
+                                    Animal Weight
+                                </th>
+                                <th>
+                                    Experimenter Name
+                                </th>
+                                <th>
+                                    Microscope EX LED Power (mw/mm^2)
+                                </th>
+                                <th>
+                                    Microscope OG LED Power (mw/mm^2)
+                                </th>
+                                <th>
+                                    Sampling Rate (Hz)
+                                </th>
+                                <th>
+                                    Session Id
+                                </th>
+                                <th>
+                                    Recording Start Time
+                                </th>
+                                <th>
+                                    Acquisition SW Version
+                                </th>
+                            </thead>
                             <tbody *ngFor="let session of sessionList">          
                                 
                                 <tr>
                                     
-                                    <td>{{session[0]}}</td>
+                                    <td>{{session.animal_date_of_birth}}</td>
                                     
-                                    <td>{{session[1]}}</td>
+                                    <td>{{session.animal_id}}</td>
                                     
-                                    <td>{{session[2]}}</td>
+                                    <td>{{session.animal_sex}}</td>
                                     
-                                    <td>{{session[3]}}</td>
+                                    <td>{{session.animal_species}}</td>
                                     
-                                    <td>{{session[4]}}</td>
+                                    <td>{{session.animal_weight}}</td>
                                     
-                                    <td>{{session[5]}}</td>
+                                    <td>{{session.experimenter_name}}</td>
                                     
-                                    <td>{{session[6]}}</td>
+                                    <td>{{session.microscope_ex_led_power}}</td>
                                     
-                                    <td>{{session[7]}}</td>
+                                    <td>{{session.microscope_og_led_power}}</td>
                                     
-                                    <td>{{session[8]}}</td>
+                                    <td>{{session.sampling_rate}}</td>
                                     
-                                    <td>{{session[9]}}</td>
+                                    <td>{{session.session_id}}</td>
                                     
-                                    <td>{{session[10]}}</td>
+                                    <td>{{session.recording_start_time}}</td>
                                     
-                                    <td>{{session[11]}}</td>
+                                    <td>{{session.acquisition_sw_version}}</td>
                                     
-                                    <td>{{session[12]}}</td>
+                                   
                                 
                                 </tr>
                             
@@ -181,15 +224,15 @@
                                     
                                 <td>Row {{i}}</td>
                                     
-                                <td>{{boutMomentDetails[0]}}</td>
+                                <td>{{boutMomentDetails[0].frames}}</td>
                                     
                                 <td>...</td>
                                    
-                                <td>{{boutMomentDetails[15]}}</td>
+                                <td>{{boutMomentDetails[15].frames}}</td>
                                     
                                 <td>...</td>
                                     
-                                <td>{{boutMomentDetails[boutMomentDetails.length-1]}}</td>
+                                <td>{{boutMomentDetails[boutMomentDetails.length-1].frames}}</td>
                                 
                             </tr>
                                 
@@ -251,15 +294,33 @@
                     
                     <table class="table table-bordered w-20">
                         
-                        <tbody *ngFor="let firstTwoCellsNeuralData of firstTwoCellsNeuralDataList let i = index">          
+                        <tbody *ngIf="firstTwoCellsNeuralDataList!= undefined">          
                             
-                            <tr>
+                            <tr *ngIf="firstTwoCellsNeuralDataList[0]!= undefined">
                                 
-                                <td>{{firstTwoCellsNeuralData[0]}}</td>
+                                <td>{{firstTwoCellsNeuralDataList[0][0].frames}}</td>
                                 
                                 <td>...</td>
                                 
-                                <td>{{firstTwoCellsNeuralData[firstTwoCellsNeuralData.length-1]}}</td>
+                                <td>{{firstTwoCellsNeuralDataList[0][firstTwoCellsNeuralDataList[0].length-1].frames}}</td>
+                                
+                            </tr>
+                            <tr *ngIf="firstTwoCellsNeuralDataList[1]!= undefined">
+                                
+                                <td>{{firstTwoCellsNeuralDataList[1][0].frames}}</td>
+                                
+                                <td>...</td>
+                                
+                                <td>{{firstTwoCellsNeuralDataList[1][firstTwoCellsNeuralDataList[1].length-1].frames}}</td>
+                                
+                            </tr>
+                            <tr *ngIf="firstTwoCellsNeuralDataList[2]!= undefined">
+                                
+                                <td>{{firstTwoCellsNeuralDataList[2][0].channels}}</td>
+                                
+                                <td>...</td>
+                                
+                                <td>{{firstTwoCellsNeuralDataList[2][firstTwoCellsNeuralDataList[2].length-1].channels}}</td>
                                 
                             </tr>
                         
