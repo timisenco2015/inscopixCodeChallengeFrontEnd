@@ -67,7 +67,7 @@ export class NeuralDisplayComponent
       {
         this.neuralDataSesssionId = "";
 
-        this.firstTwoCellsNeuralDataList=null;
+        this.firstTwoCellsNeuralDataList=[];
       }
       else
       {

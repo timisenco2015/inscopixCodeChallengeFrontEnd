@@ -95,19 +95,16 @@ export class FileUploadComponent
        
                 this._timeSeriesNeuronService.uploadSession(formData).subscribe(response => 
                 {
-                    console.log("---> ",response);
+                    
                     this.spinner.hide(); 
-
     
                     this.errorMessage=JSON.stringify(response["object"]) ;
                     
-            
                 },
                 error => 
                 {
-                    this.spinner.hide(); 
 
-                    
+                    this.spinner.hide(); 
       
                     this.errorMessage=JSON.stringify(error) ;
 
@@ -142,6 +139,7 @@ export class FileUploadComponent
                 formData.append('file', file.data);
 
                 formData.append('sessionId', this.sessionIdValue);
+
                 file.inProgress = true;  
 
                  this.spinner.show();
@@ -266,7 +264,9 @@ export class FileUploadComponent
             const file = fileUpload.files[0]; 
            
             this.cellSetfiles=[]
-            this.cellSetfiles.push({ data: file, inProgress: false});  
+
+            this.cellSetfiles.push({ data: file, inProgress: false}); 
+
             this.uploadCellSetFiles();  
         };  
 
@@ -277,20 +277,24 @@ export class FileUploadComponent
     onGPIOFileUploadClick()
     {
         const fileUpload = this.fileGPIOUpload.nativeElement;
+
         this.isSessionIdError=false;
+
         fileUpload.onchange = () => 
         {  
    
             const file = fileUpload.files[0];  
             this.gPIOFiles=[];
+
             this.gPIOFiles.push({ data: file, inProgress: false});  
+
             this.uploadGPIOFiles();  
         };  
 
         fileUpload.click(); 
     }
 
-
+    //angular keyup method in the neualDisplay html
     sessionIdInput(event)
     {
       

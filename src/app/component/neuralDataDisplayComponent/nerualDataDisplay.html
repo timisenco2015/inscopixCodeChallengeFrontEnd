@@ -294,33 +294,25 @@
                     
                     <table class="table table-bordered w-20">
                         
-                        <tbody *ngIf="firstTwoCellsNeuralDataList!= undefined">          
+                        <tbody *ngFor="let firstTwoCellsNeuralData of firstTwoCellsNeuralDataList let i = index" >          
                             
-                            <tr *ngIf="firstTwoCellsNeuralDataList[0]!= undefined">
+                            <tr *ngIf="i==0 || i==1">
                                 
-                                <td>{{firstTwoCellsNeuralDataList[0][0].frames}}</td>
+                                <td>{{firstTwoCellsNeuralData[0].frames}}</td>
                                 
                                 <td>...</td>
                                 
-                                <td>{{firstTwoCellsNeuralDataList[0][firstTwoCellsNeuralDataList[0].length-1].frames}}</td>
+                                <td>{{firstTwoCellsNeuralData[firstTwoCellsNeuralData.length-1].frames}}</td>
                                 
                             </tr>
-                            <tr *ngIf="firstTwoCellsNeuralDataList[1]!= undefined">
+                           
+                            <tr *ngIf="i==2">
                                 
-                                <td>{{firstTwoCellsNeuralDataList[1][0].frames}}</td>
-                                
-                                <td>...</td>
-                                
-                                <td>{{firstTwoCellsNeuralDataList[1][firstTwoCellsNeuralDataList[1].length-1].frames}}</td>
-                                
-                            </tr>
-                            <tr *ngIf="firstTwoCellsNeuralDataList[2]!= undefined">
-                                
-                                <td>{{firstTwoCellsNeuralDataList[2][0].channels}}</td>
+                                <td>{{firstTwoCellsNeuralData[0].channels}}</td>
                                 
                                 <td>...</td>
                                 
-                                <td>{{firstTwoCellsNeuralDataList[2][firstTwoCellsNeuralDataList[2].length-1].channels}}</td>
+                                <td>{{firstTwoCellsNeuralData[firstTwoCellsNeuralData.length-1].channels}}</td>
                                 
                             </tr>
                         

@@ -16,8 +16,11 @@ export class FileLocationUploadComponent implements OnDestroy
   
 
     isSessionError=false;
+
     isSessionIdError=false;
+
     isCellsError=false;
+
     isGPIOSError=false;
 
     _spinner: NgxSpinnerService;
@@ -43,6 +46,7 @@ export class FileLocationUploadComponent implements OnDestroy
 
     cellsFileName:string;
 
+
     constructor(timeSeriesNeuronService:TimeSeriesNeuronService,private spinner: NgxSpinnerService,private _snackBar: MatSnackBar)
     {
         this._timeSeriesNeuronService=timeSeriesNeuronService;
@@ -55,6 +59,7 @@ export class FileLocationUploadComponent implements OnDestroy
 
     ngOnInit() 
     {
+        // listen to input from cells file location text input
         this.cellsFilesLocationTextChanged.pipe(debounceTime(1000)).subscribe(response=>
         {
             if(response=="")
@@ -69,7 +74,7 @@ export class FileLocationUploadComponent implements OnDestroy
             }
         });
 
-
+        // listen to input from sessions file location text input
         this.sessionsFilesLocationTextChanged.pipe(debounceTime(2000)).subscribe(response=>
         {
             if(response=="")
@@ -84,7 +89,7 @@ export class FileLocationUploadComponent implements OnDestroy
             }
         });
 
-
+        // listen to input from gpios file location text input
         this.gpiosFilesLocationTextChanged.pipe(debounceTime(2000)).subscribe(response=>
         {
             if(response=="")
@@ -99,7 +104,7 @@ export class FileLocationUploadComponent implements OnDestroy
             }
         });
 
-
+        // listen to input from session id text input
         this.sessionsIdTextChanged.pipe(debounceTime(2000)).subscribe(response=>
         {
             if(response=="")
@@ -147,11 +152,8 @@ export class FileLocationUploadComponent implements OnDestroy
             this.isSessionError=true;
         }
 
-        if(this.sessionIdValue==null)
-        {
-            this.isSessionIdError=true;
-        }
-        if (this.sessionsFileName!=null && this.sessionIdValue!=null)
+      
+        if (this.sessionsFileName!=null)
         {
             this.spinner.show();
 
@@ -320,25 +322,28 @@ export class FileLocationUploadComponent implements OnDestroy
        
     }
        
-   
+    //angular keyup method in the neualDisplay html
     gPIOFileLocationInput(event)
     {
        
       this.gpiosFilesLocationTextChanged.next(event.target.value);
     }
     
+    //angular keyup method in the neualDisplay html
     cellsFileLocationInput(event)
     {
       
       this.cellsFilesLocationTextChanged.next(event.target.value);
     }
    
+    //angular keyup method in the neualDisplay html
     sessionIdInput(event)
     {
       
       this.sessionsIdTextChanged.next(event.target.value);
     }
 
+    //angular keyup method in the neualDisplay html
     sessionsFileLocationInput(event)
     {
       

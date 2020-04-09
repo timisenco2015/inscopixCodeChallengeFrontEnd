@@ -31,14 +31,14 @@ export class TimeSeriesNeuronService
       map((response) => 
       {
         
-        if(response==null)
+        if(response==null || response==undefined)
         {
           return EMPTY;
         }
         else
         {
          
-          console.log("--++--> ",response.data);
+         
           return response.data;
         }
       }), 
@@ -57,7 +57,7 @@ export class TimeSeriesNeuronService
       map((response) => 
       {
         
-        if(response==null)
+        if(response==null || response==undefined)
         {
           return EMPTY;
         }
@@ -83,7 +83,7 @@ export class TimeSeriesNeuronService
       map((response) => 
       {
         
-        if(response==null)
+        if(response==null || response==undefined)
         {
           return EMPTY;
         }
@@ -107,7 +107,7 @@ export class TimeSeriesNeuronService
         map((response) => 
         {
           
-          if(response==null)
+          if(response==null || response==undefined)
           {
             return EMPTY;
           }
@@ -131,7 +131,7 @@ export class TimeSeriesNeuronService
         map((response) => 
         {
           
-          if(response==null)
+          if(response==null || response==undefined)
           {
             return EMPTY;
           }
@@ -155,7 +155,7 @@ export class TimeSeriesNeuronService
         map((response) => 
         {
           
-          if(response==null)
+          if(response==null || response==undefined)
           {
             return EMPTY;
           }
@@ -179,7 +179,7 @@ export class TimeSeriesNeuronService
          map((response) => 
          {
            
-           if(response==null)
+           if(response==null || response==undefined)
            {
              return EMPTY;
            }
@@ -202,7 +202,7 @@ export class TimeSeriesNeuronService
         map((response) => 
         {
           
-          if(response==null)
+          if(response==null || response==undefined)
           {
             return EMPTY;
           }
@@ -225,7 +225,7 @@ export class TimeSeriesNeuronService
       map((response) => 
       {
         
-        if(response==null)
+        if(response==null || response==undefined)
         {
           return EMPTY;
         }
